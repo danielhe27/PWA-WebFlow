@@ -34,7 +34,7 @@ const request = store.getAll();
 
 const result= await request;
 console.log('getDb result', result);
-return result;
+return result?.value;
 
 console.error('getDb not implemented');
 };
