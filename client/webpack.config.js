@@ -1,8 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
-const { GenerateSW, InjectManifest } = require('workbox-webpack-plugin'); // Import GenerateSW and InjectManifest
-
+const { InjectManifest } = require('workbox-webpack-plugin');
 
 
 module.exports = () => {
@@ -21,15 +20,19 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'JATE',
         template: './index.html',
+        title: 'JATE'
+      }),
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
       }),
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
-        name: ' Text Editor',
+        name: 'Just Another Text Editor',
         short_name: 'JATE',
-        description: 'text editor',
+        description: 'Just another text editor',
         background_color: '#225ca3',
         theme_color: '#225ca3',
         start_url: '/',
@@ -42,30 +45,24 @@ module.exports = () => {
           },
         ],
       }),
-      // new GenerateSW(), 
-      new InjectManifest({
-        swSrc: './src-sw.js', 
-        swDest: 'src-sw.js', 
-      }),
+
     ],
 
     module: {
       rules: [
         {
           test: /\.css$/i,
-          use: [MiniCssExtractPlugin.loader, 'css-loader'],
-        },
-        {
-          test: /\.(png|svg|jpg|jpeg|gif)$/i,
-          type: 'asset/resource',
+          use: ['style-loader', 'css-loader'],
         },
         {
           test: /\.m?js$/,
-          exclude: /(node_modules|bower_components)/,
+          exclude: /node_modules/,
+
           use: {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
             },
           },
         },

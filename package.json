@@ -1,5 +1,5 @@
 {
-  "name": "mini-project-main",
+  "name": "jate",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -15,11 +15,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+    "@eslint/js": "^9.1.1",
     "concurrently": "^5.2.0",
-    "mini-css-extract-plugin": "^2.9.0",
-    "workbox-webpack-plugin": "^7.1.0"
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.1",
+    "globals": "^15.1.0",
+    "typescript-eslint": "^7.8.0"
   }
 }
