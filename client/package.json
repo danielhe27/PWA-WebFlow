@@ -1,12 +1,9 @@
 {
-  "name": "Contact",
+  "name": "JATE",
   "scripts": {
-    "start:dev": "concurrently \"cd server && npm run server\" \"cd client && npm run dev\"",
-    "start": "npm run build && cd server && node server.js",
-    "server": "cd server nodemon server.js --ignore client",
-    "build": "webpack --config webpack.config.js",
-    "install": "cd server && npm i && cd ../client && npm i",
-    "client": "cd client && npm start"
+    "dev": "webpack-dev-server",
+    "build": "webpack --mode production",
+    "start": "webpack --watch"
   },
   "author": "2U",
   "license": "UNLICENSED",
@@ -27,6 +24,7 @@
     "workbox-webpack-plugin": "^6.2.4"
   },
   "dependencies": {
+    "code-mirror-themes": "^1.0.0",
     "idb": "^6.1.2"
   }
 }
