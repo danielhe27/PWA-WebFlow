@@ -12,12 +12,16 @@
     "install": "cd server && npm i ../client && npm i",
     "client": "cd client && npm start"
   },
+  "engines": {
+    "node": "21.7.3"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "if-env": "^1.0.4"
+    "if-env": "^1.0.4",
+    "webpack-cli": "^5.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
