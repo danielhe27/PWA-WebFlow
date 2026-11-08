@@ -17,7 +17,8 @@ export const putDb = async (content) => {
   const db = await openDB('jate', 1);
   const tx = db.transaction('jate', 'readwrite');
   const store = tx.objectStore('jate');
-  const request = store.put({ content });
+  // Always save to the same record (id 1) so the store holds one document, not a new row per save.
+  const request = store.put({ id: 1, content });
   const result = await request;
   console.log('putDb result', result);
   if (!result) {
@@ -30,14 +31,10 @@ export const getDb = async () => {
   const db = await openDB('jate', 1);
   const tx = db.transaction('jate', 'readonly');
   const store = tx.objectStore('jate');
-  const request = store.getAll();
-  const result = await request;
+  // The editor needs text, so return the saved content (or undefined if nothing is saved yet).
+  const result = await store.get(1);
   console.log('getDb result', result);
-  if (!result) {
-    console.error('getDb failed');
-    throw new Error('getDb failed');
-  }
-  return result;
+  return result?.content;
 };
 
 // Call initdb to ensure the database is initialized when the module is imported
